@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+#include<fcntl.h>
+#include<string.h>
+
+int main(int argc,char *argv[]){
+    int fd;
+    if(argc == 1){
+        printf("File name after the program name is not provided.\n");
+        return -1;
+    }
+    int rec1 = open("record.txt",O_CREAT|O_RDWR,0777);
+    // int rec2 = open("record.txt",O_CREAT|O_RDWR,0777);
+    if(rec1 < 0 ){
+        perror("Unable to open file");
+        return -1;
+    }
+    char buf[100];
+    strncpy(buf, "Record", 100);
+    struct flock lock;
+    lock.l_whence = SEEK_SET;
+    lock.l_type = F_WRLCK;
+    lock.l_start = 0;
+    lock.l_len = 100;
+    lock.l_pid = getpid();
+    printf("Press to set record lock\n");
+    getchar();
+    printf("Trying to acquire lock...\n");
+    if(fcntl(rec1,F_SETLKW,&lock) == -1){
+        fcntl(rec1,F_GETLK,&lock);
+        printf("File already locked by another process (pid): \t%d.\n",lock.l_pid);
+        return -1;
+    }
+    printf("Record Locked Successfully.\n");
+    printf("Updating Critical Section.\n");
+    write(rec1,buf,sizeof(buf));
+    printf("Data updated in the file.\n");
+    puts(buf);
+    printf("Press enter to release lock\n");
+    getchar();
+    printf("Leaving Critical Section.\n");
+    lock.l_type = F_UNLCK;
+    lock.l_whence = SEEK_SET;
+    lock.l_start = 0;
+    lock.l_len = 0;
+    if(fcntl(rec1,F_SETLK,&lock) == -1){
+        printf("Unable to release record lock.\n");
+        return -1;
+    }
+    close(rec1);
+    // close(rec2);
+    return 1;
+}
