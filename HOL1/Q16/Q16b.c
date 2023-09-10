@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 16b.c
+Author : Jay Rathod
+Description : Write a program to perform mandatory locking.    a. Implement write lock    b. Implement read lock 
+Date: 10th Sep, 2023.
+============================================================================
+*/
 #include<stdio.h>
 #include<fcntl.h>
 #include<unistd.h>

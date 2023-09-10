@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 6.c
+Author : Jay Rathod
+Description : Write a program to take input from STDIN and display on STDOUT. Use only read/write system calls 
+Date: 10th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <sys/types.h>
 #include <unistd.h>

@@ -1,5 +1,14 @@
+/*
+============================================================================
+Name : 3.c
+Author : Jay Rathod
+Description : Write a program to create a file and print the file descriptor value. Use creat ( ) system call.
+Date: 10th Sep, 2023.
+============================================================================
+*/
 #include<stdio.h>
 #include<fcntl.h>
+#include<sys/stat.h>
 
 int create(char* file_name, mode_t mode) {
   return creat(file_name, mode);
@@ -7,7 +16,7 @@ int create(char* file_name, mode_t mode) {
 
 void main() {
   char* file_name="creat.file";
-  mode_t mode=S_IRUSR;
+  mode_t mode = S_IRUSR;
   int fd;
   if((fd=create(file_name, mode))<0)
     perror("Error while creation of file!");

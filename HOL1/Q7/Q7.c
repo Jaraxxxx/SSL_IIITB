@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 7.c
+Author : Jay Rathod
+Description : Write a program to copy file1 into file2 ($cp file1 file2).
+Date: 10th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <sys/types.h>
 #include <unistd.h>

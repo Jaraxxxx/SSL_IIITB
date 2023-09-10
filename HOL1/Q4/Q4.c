@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 4.c
+Author : Jay Rathod
+Description : Write a program to open an existing file with read write mode. Try O_EXCL flag also. 
+Date: 10th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <sys/types.h>
 #include <unistd.h>
