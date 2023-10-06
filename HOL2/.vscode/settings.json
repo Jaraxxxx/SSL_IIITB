@@ -8,6 +8,7 @@
         "string.h": "c",
         "stat.h": "c",
         "stdio.h": "c",
-        "shm.h": "c"
+        "shm.h": "c",
+        "in.h": "c"
     }
 }
